@@ -7,6 +7,7 @@ This repository contains scripts and data related to the quantification of corro
 ### Data
 - **matrices**: Directory containing matrix data used for training and testing models.
 - **results**: Directory containing the results of the corrosion quantification analysis.
+- **Image Database**: Directory containing all grayscale images derived from IQ samples. Images were generated with an FFT size of 4096 and 128 stacks. Storing images in very lightweight, but does not provide the versatalitiy of storing IQ samples.
 
 ### Scripts
 - **IBEXtrainingLocal.py**: Script for training on a GPU Cluster. 
@@ -19,7 +20,7 @@ This repository contains scripts and data related to the quantification of corro
 ## Usage
 
 0. **Import IQ samples**: Import the IQ samples, ideally in the samples directory as the scripts are pointing there.
-1. **iqToRichImages**: Take the IQ samples, apply FFT and stacks them to create grayscale images.
+1. **iqToRichImages**: Take the IQ samples, apply FFT, and stack them to create grayscale images.
 2. **Training**: Use `IBEXtrainingLocal.py` or `distributedTrainingLocal.py` to train the model on your data. The script will also test the resulting model and provide usual ML metrics. Typical behavior will be similarity between the metrics, the most relevant being F1-score in corrosion detection. 
 
 ## License
