@@ -1,0 +1,61 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# === 1. Define the new confusion matrix ===
+original_confusion_matrix = np.array([
+    [148, 0, 13, 9, 1, 0, 0, 0, 0],
+    [0, 116, 1, 2, 3, 4, 0, 1, 63],
+    [98, 0, 117, 3, 0, 0, 0, 1, 0],
+    [8, 3, 0, 190, 40, 0, 0, 0, 11],
+    [5, 14, 0, 25, 127, 0, 0, 0, 5],
+    [0, 3, 1, 0, 0, 123, 44, 1, 22],
+    [0, 0, 0, 0, 0, 16, 151, 21, 0],
+    [0, 0, 0, 0, 0, 4, 41, 111, 0],
+    [1, 13, 0, 2, 5, 60, 16, 2, 119]
+])
+
+# Original labels
+original_labels = ['0.5', '1.5spread', '1.5stack', '1spread', '1stack',
+                   '2.5spread', '2.5stack', '2spread', '2stack']
+
+# Desired order
+desired_labels = ['0.5', '1spread', '1stack', '1.5spread', '1.5stack',
+                  '2spread', '2stack', '2.5spread', '2.5stack']
+
+# === 2. Rearrange confusion matrix ===
+label_to_index = {label: idx for idx, label in enumerate(original_labels)}
+rearranged_confusion_matrix = np.zeros_like(original_confusion_matrix)
+for i, new_label in enumerate(desired_labels):
+    for j, new_label_col in enumerate(desired_labels):
+        rearranged_confusion_matrix[i, j] = original_confusion_matrix[label_to_index[new_label], label_to_index[new_label_col]]
+
+# === 3. Compute per-class accuracy ===
+row_sums = rearranged_confusion_matrix.sum(axis=1, keepdims=True)
+normalized_cm = rearranged_confusion_matrix / row_sums
+class_accuracy = np.diag(normalized_cm)
+
+# === 4. Map to oxide levels and geometries ===
+oxide_levels = ['1', '1.5', '2', '2.5']
+spread_labels = [f'{o}spread' for o in oxide_levels if f'{o}spread' in desired_labels]
+stack_labels = [f'{o}stack' for o in oxide_levels if f'{o}stack' in desired_labels]
+
+spread_acc = [class_accuracy[desired_labels.index(l)] for l in spread_labels]
+stack_acc = [class_accuracy[desired_labels.index(l)] for l in stack_labels]
+
+spread_error = [1 - a for a in spread_acc]
+stack_error = [1 - a for a in stack_acc]
+
+# === 5. Plot the error trend ===
+plt.figure(figsize=(8,5))
+plt.plot(oxide_levels, spread_error, marker='o', label='Spread', color='orange', linewidth=2)
+plt.plot(oxide_levels, stack_error, marker='o', label='Stack', color='saddlebrown', linewidth=2)
+
+plt.xlabel('Oxide Quantity (g)', fontsize=18)
+plt.ylabel('Misclassification Rate', fontsize=18)
+plt.ylim(0, 1)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.legend(fontsize=14)
+plt.tight_layout()
+plt.show()
