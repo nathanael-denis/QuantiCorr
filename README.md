@@ -1,6 +1,8 @@
 # Corrosion Quantification Project
 
-This repository contains scripts and data related to the quantification of corrosion using image processing and machine learning techniques. Below is a brief description of each file and its purpose:
+This repository contains scripts and data related to the quantification of corrosion using image processing and machine learning techniques.
+It is linked to an article published in Elsevier's Measurement, named *A harmonic radar approach to steel oxidation measurements using spectrogram classification*
+Below is a brief description of each file and its purpose:
 
 ## Files
 
@@ -15,7 +17,7 @@ This repository contains scripts and data related to the quantification of corro
 ### Additional scripts for performance improvements
 
 - **thermalImpact.py**: Data augmentation to test robustness of the model to temperature changes, including in out-of-distribution testing
--  ** SNR.py **: Compute signal-to-noise ration on collected .iq files at 5 cm and 25 cm distance.
+-  **SNR.py**: Compute signal-to-noise ration on collected .iq files at 5 cm and 25 cm distance.
 -  **SNR_pipe.py**: Same as above but for the pipe files.
 -  **frequency_tuning.py**: Compute dBFS over .iq files collected with different frequencies, to highlight the most receptive frequencies for each oxide type.
 
