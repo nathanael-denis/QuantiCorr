@@ -47,4 +47,4 @@ Below is a brief description of each file and its purpose:
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
+This project is licensed under the GNU GPL v3.0.
