@@ -1,7 +1,11 @@
 # Corrosion Quantification Project
 
 This repository contains scripts and data related to the quantification of corrosion using image processing and machine learning techniques.
+
 It is linked to an article published in Elsevier's Measurement, named *A harmonic radar approach to steel oxidation measurements using spectrogram classification*
+
+The main point of the paper is to demonstrated that, provided radar data is collected under the form of .iq samples, a trained classifier can discriminate oxide quantities.
+
 Below is a brief description of each file and its purpose:
 
 ## Files
@@ -33,6 +37,8 @@ Below is a brief description of each file and its purpose:
 - **sim_without_pipeLB.py**: Simulation for one oxide in open air
 -  **sim_without_pipe_2_5gLB.py**: Simulation for five oxides in open air
 
+### Interpolation
+- **plotInterpolation.py**: Treats oxide measuremens as a regression problem instead of classifying classes corresponding to quantities with a step
 ## Usage
 
 0. **Import IQ samples**: Import the IQ samples, ideally in the samples directory as the scripts are pointing there.
