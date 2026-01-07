@@ -4,7 +4,7 @@ This repository contains scripts and data related to the quantification of corro
 
 It is linked to an article published in Elsevier's Measurement, named *A harmonic radar approach to steel oxidation measurements using spectrogram classification*
 
-The main point of the paper is to demonstrated that, provided radar data is collected under the form of .iq samples, a trained classifier can discriminate oxide quantities.
+The main point of the paper is to demonstrate that, provided radar data is collected in the form of .iq samples, a trained classifier can discriminate oxide quantities.
 
 Below is a brief description of each file and its purpose:
 
